@@ -10,9 +10,8 @@ User = get_user_model()
 
 
 class CustomLoginSerializer(LoginSerializer):
-    username = serializers.EmailField(required=True, error_messages={
-        'invalid': '유효한 이메일 주소를 입력해주세요.',
-        'blank': '사용자의 이메일(Email)을 입력해주세요.',
+    username = serializers.CharField(required=True, error_messages={
+        'blank': '사용자의 이름(ID)을 입력해주세요.',
     })
     password = serializers.CharField(required=True, error_messages={
         'blank': '비밀번호를 입력해주세요.',
@@ -36,7 +35,10 @@ class CustomLoginSerializer(LoginSerializer):
 
 
 class CustomRegisterSerializer(RegisterSerializer):
-    username = serializers.EmailField(required=True, error_messages={
+    username = serializers.CharField(required=True, error_messages={
+        'blank': '이름을 입력해주세요.',
+    })
+    email = serializers.EmailField(required=True, error_messages={
         'invalid': '유효한 이메일 주소를 입력해주세요.',
         'blank': '본인의 이메일(Email)을 입력해주세요.',
     })
@@ -71,7 +73,7 @@ class CustomRegisterSerializer(RegisterSerializer):
 
     def validate(self, data):
 
-        data['email'] = data.get('username')
+        # data['email'] = data.get('username')
         if data.get('password1') != data.get('password2'):
             raise serializers.ValidationError(
                 {'password2': _('비밀번호와 비밀번호 확인이 일치하지 않습니다.')},
