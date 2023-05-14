@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <h1>Home Index</h1>
+    <ul>
+        {% for k, v in data.items %}
+            <li>{{ k }}: {{ v }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
