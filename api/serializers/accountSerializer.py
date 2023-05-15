@@ -1,10 +1,13 @@
 from django.contrib.auth import get_user_model
 from dj_rest_auth.serializers import LoginSerializer
 from dj_rest_auth.registration.serializers import RegisterSerializer
+from django.template.loader import render_to_string
 from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
 from dj_rest_auth.serializers import PasswordResetSerializer
+from django.contrib.auth.forms import PasswordResetForm
+
 
 User = get_user_model()
 
@@ -91,10 +94,15 @@ class CustomRegisterSerializer(RegisterSerializer):
 
 
 class CustomPasswordResetSerializer(PasswordResetSerializer):
+    @property
+    def password_reset_form_class(self):
+        return PasswordResetForm
+
     def get_email_options(self):
-        email = super().get_email_options()
-        # email['html_email_template_name'] = 'path/to/custom_password_reset_email.html'
-        email['context'] = {
-            'reset_url': email['reset_url'].replace('127.0.0.1:8000', '127.0.0.1:3000'),
+        # extra_context = {...}  # your extra context parameters
+        return {
+            'domain_override': '127.0.0.1:3000',
+            # 'email_template_name': 'registration/custom_reset_email.txt',
+            # 'html_email_template_name': 'registration/custom_reset_email.html',
+            # 'extra_email_context': extra_context
         }
-        return email

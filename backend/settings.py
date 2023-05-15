@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'allauth',
     'allauth.account',
@@ -168,6 +169,7 @@ SITE_ID = 1
 REST_AUTH = {
     'USE_JWT': True,
     'JWT_AUTH_HTTPONLY': True,  # False 일경우 로그인 시 refresh token 재발급 됨.
+    'PASSWORD_RESET_USE_SITES_DOMAIN': True
 }
 
 # ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # username 필드 사용 x
@@ -211,6 +213,7 @@ EMAIL_HOST_USER = 'retinforhex@gmail.com'
 EMAIL_HOST_PASSWORD = 'kehtevsajggwoufd'
 DEFAULT_FROM_EMAIL = 'retinforhex@gmail.com'
 
-REST_AUTH_SERIALIZERS = {
-    'PASSWORD_RESET_SERIALIZER': 'api.serializers.accountSerializer.CustomPasswordResetSerializer',
-}
+# REST_AUTH_SERIALIZERS = {
+#     # 'PASSWORD_RESET_SERIALIZER': 'api.serializers.customSerializer.MyPasswordResetSerializer',
+#     'PASSWORD_RESET_SERIALIZER': 'api.serializers.accountSerializer.CustomPasswordResetSerializer',
+# }
