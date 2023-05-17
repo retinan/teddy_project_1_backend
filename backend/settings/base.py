@@ -23,11 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-m5&r5daf&-p-#-i)0h%6=m(8tp)wolc2c4#no2u&(b^9^!s-7_'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ["*"]
-
 
 # Application definition
 
@@ -96,16 +91,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'akynmyot',
-        'USER': 'akynmyot',
-        'PASSWORD': '1RZnjual1iA42eFM8CVRKuwxpTz8hswM',
-        'HOST': 'arjuna.db.elephantsql.com',
-        'PORT': '5432',
-    }
-}
 
 
 # Password validation
@@ -196,8 +181,8 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
 
 
