@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'web',
     'api',
+    'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
